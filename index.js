@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000;
 
 //------ middlewere ----
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: ["http://localhost:5173", "http://localhost:5174", 'https://shahadathossain08.web.app'],
   credentials: true,
   optionSuccessStatus: 200,
 };
