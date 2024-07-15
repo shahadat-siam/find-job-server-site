@@ -33,12 +33,18 @@ async function run() {
     const jobsCollection = client.db('FindJob').collection('jobs')
 
 
-        // save job data in jobsCollection 
-        app.post('/jobs', async(req,res) => {
-            const jobData = req.body
-            const result = await jobsCollection.insertOne(jobData)
-            res.send(result)
-        })
+    // save job data in jobsCollection 
+    app.post('/jobs', async(req,res) => {
+        const jobData = req.body
+        const result = await jobsCollection.insertOne(jobData)
+         res.send(result)
+    })
+
+    // get all jobs data from db
+    app.get('/all-jobs', async (req,res) => {     
+        const result = await jobsCollection.find().toArray()
+        res.send(result)
+    })
      
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
