@@ -38,9 +38,17 @@ async function run() {
 
     // get all jobs data from db
     app.get("/all-jobs", async (req, res) => {
-      const result = await jobsCollection.find().toArray();
-      res.send(result);
-    });
+        const category = req.query.category;
+      
+        let query = {};
+        if (category) {
+          query = { category };
+        }
+      
+        const result = await jobsCollection.find(query).toArray();
+        res.send(result);
+      });
+      
 
     // delete a job data
     app.delete("/jobs/:id", async (req, res) => {
